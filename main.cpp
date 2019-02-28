@@ -26,12 +26,13 @@ int main(int argc, char *argv[])
 		return 0;
 	}
 	ifstream infile(argv[1]); // getting the filename for argv[1], opening the file properly
-	if(infile.is_open()){
+	if(infile.is_open()){  // reading the input from filename
 		string line;
 		int sumOfInnerList = 0;
 	
 		list<int> *innerList = new list<int> ();
 		list<list<int> *> outer_list;
+		
 		while(getline(infile,line)) {
 					stringstream ss(line);
 			int totalSum = 0;
@@ -50,10 +51,20 @@ int main(int argc, char *argv[])
 	}	
 
 	 cout << "List Counter: " << sumOfInnerList << endl; 
-			 cout << "Size of the Outer List: " << sumOfInnerList<< endl;
-	for(int i = 0; i < outer_list.size(); i++ ){
-		cout << "List" << (i + 1) << "has" << (i + 1) << "elements and sums to" << (i + 3) << endl;
+			 cout << "Size of the Outer List: " << sumOfInnerList << endl;
+	for(auto iter = outer_list.begin(); iter != outer_list.end(); ++iter ){
+		list <int> listOfInts (*(*iter));
+		cout << "List " << listOfInts << "has" << endl;
+		// how would you find the position for that list of integers, 
+		//so that "List _" comes out with an actual # for the __?
+	} 
+	for(auto iter = innerList->begin(); iter != innerList->end(); ++iter){
+		sumOfInnerList = *iter + sumOfInnerList;
+		cout << "elements and sums to " << *iter + sumOfInnerList << endl;
+		
+		
 	}
+
 
 	infile.close(); // Closing the inputfile
 
