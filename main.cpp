@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
 		list<list<int> *> outer_list;
 		
 		while(getline(infile,line)) {
+			if(line == "") continue;
 					stringstream ss(line);
 		
 	
@@ -54,13 +55,11 @@ int main(int argc, char *argv[])
 			 int count = 1;
 	for(auto iter = outer_list.begin(); iter != outer_list.end(); ++iter ){
 		list <int> listOfInts (*(*iter));
-	cout << "List " << count << " has " << listOfInts.size() << " element(s) and sums to " << endl;
 
 	for(auto it = innerList->begin(); it != innerList->end(); ++it){
 		sumOfInnerList += (*it);		
 	}
-
-	cout << sumOfInnerList << endl;
+	cout << "List " << count << " has " << listOfInts.size() << " element(s) and sums to " << endl << sumOfInnerList << endl;
 	sumOfInnerList = 0;
 	count ++;
 	}
