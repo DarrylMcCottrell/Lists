@@ -29,40 +29,40 @@ int main(int argc, char *argv[])
 	if(infile.is_open()){  // reading the input from filename
 		string line;
 		int sumOfInnerList = 0;
+		int sum = 0;
 	
 		list<int> *innerList = new list<int> ();
 		list<list<int> *> outer_list;
 		
 		while(getline(infile,line)) {
 					stringstream ss(line);
-			int totalSum = 0;
 		
 	
 		do{
 			int numbers;
 			ss >> numbers;
-			totalSum += numbers; //totalsum = totalsum + numbers
-			cout << "Number is: " << numbers << endl;
 			 (*innerList).push_back(numbers);
-			 sumOfInnerList++; 
 			
 		} while(!ss.eof());
+			sum++;
 			outer_list.push_back(innerList);
 	}	
 
-	 cout << "List Counter: " << sumOfInnerList << endl; 
-			 cout << "Size of the Outer List: " << sumOfInnerList << endl;
+	 cout << "List Counter: " << sum << endl; 
+			 cout << "Size of the Outer List: " << outer_list.size() << endl;
+
+			 int count = 1;
 	for(auto iter = outer_list.begin(); iter != outer_list.end(); ++iter ){
 		list <int> listOfInts (*(*iter));
-		cout << "List " << listOfInts << "has" << endl;
-		// how would you find the position for that list of integers, 
-		//so that "List _" comes out with an actual # for the __?
-	} 
-	for(auto iter = innerList->begin(); iter != innerList->end(); ++iter){
-		sumOfInnerList = *iter + sumOfInnerList;
-		cout << "elements and sums to " << *iter + sumOfInnerList << endl;
-		
-		
+	cout << "List " << count << " has " << listOfInts.size() << " element(s) and sums to " << endl;
+
+	for(auto it = innerList->begin(); it != innerList->end(); ++it){
+		sumOfInnerList += (*it);		
+	}
+
+	cout << sumOfInnerList << endl;
+	sumOfInnerList = 0;
+	count ++;
 	}
 
 
